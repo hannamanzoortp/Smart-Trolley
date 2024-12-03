@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+        }
+        .box {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .box h2 {
+            margin-top: 0;
+        }
+        .logout {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #f44336; /* Red */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="dashboard">
+        <div class="box">
+            <h2>Staff</h2>
+            <p>Manage staff members</p>
+            <a href="/view_staff"><button>View Staff</button></a>
+        </div>
+        
+        <div class="box">
+            <h2>Products</h2>
+            <p>Manage product listings</p>
+            <a href="/view_product"><button>View Products</button></a> 
+        </div>
+
+        <div class="box">
+            <h2>Logout</h2>
+            <p>End your session</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        function logout() {
+            // Add logout functionality here
+            alert("Logged out successfully!");
+            // Redirect to login page or another page
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+</html>
