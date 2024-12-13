@@ -22,7 +22,7 @@ class AddProductPage(View):
     def get(self,request):
         return render(request,"Admin/add product.html")
     def post(self, request):
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             f=form.save(commit=False)
             f.save()
@@ -52,9 +52,24 @@ class AddStaffPage(View):
 class AdminBoardPage(View):
     def get(self,request):
         return render(request,"Admin/adminboard.html")
+    
 class EditProductPage(View):
-    def get(self,request):
-        return render(request,"Admin/editproduct.html")
+    def get(self,request,p_id):
+        obj=ProductTable.objects.get(id=p_id)
+        return render(request,"Admin/editproduct.html",{'val':obj})
+    def post(self, request, p_id):
+        obj= ProductTable.objects.get(id=p_id)
+        form = ProductForm(request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('''<script>alert("product edit succesfully");window.location="/view_product"</script>''')
+class DeleteProductPage(View):
+       def get(self,request, p_id):
+            obj = ProductTable.objects.get(id=p_id)
+            obj.delete()
+            return HttpResponse('''<script>alert("delete product succesfully");window.location="/view_product"</script>''')
+
+
 class EditStaffPage(View):
     def get(self,request, s_id):
         obj = StaffTable.objects.get(id=s_id)
@@ -71,8 +86,10 @@ class DeleteStaffPage(View):
         obj = StaffTable.objects.get(id=s_id)
         obj.delete()
         return HttpResponse('''<script>alert("delete staff succesfully");window.location="/view_staff"</script>''')
-        
-
+class OfferPage(View):
+    def get(self,request, p_id):
+        obj = OffersTable.objects.all()
+        return render(request,"Admin/offer.html",{'val': obj})
 class ViewProductPage(View):
     def get(self,request):
         obj = ProductTable.objects.all()
@@ -93,7 +110,9 @@ class LoginScreenPage(View):
         return render(request,"Staff/loginscreen.html")  
 class ProductDetailsPage(View):
     def get(self,request):
-        return render(request,"Staff/productdetails.html")   
+        return render(request,"Staff/productdetails.html")  
+
+     
     
 
     

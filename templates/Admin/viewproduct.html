@@ -65,32 +65,40 @@
                 <th>price</th>
                 <th>expiryDate</th>
                 <th>manufacturingDate</th>
-                <th>Offers</th>
                 <th>Actions</th>
-
-
-
             </tr>
         </thead>
         <tbody>
+            {% for i in val %}
+            
             <tr>
-                <td>John Doe</td>
-                <td>123 Main St</td>
-                <td>$50,000</td>
-                <td>dd-mm-year</td>
-                <td>dd-mm-year</td>
-                <td>50%</td>
+                <td>{{ i.Name }}
+                    <img src="{{ i.Image.url }}" width="50" height="30">
+                </td>
+                <td>{{ i.BrandName }}</td>
+                <td>{{ i.Price }}</td>
+                <td>{{ i.ExpiryDate }}</td>
+                <td>{{ i.ManufacturingDate }}</td>
                 <td> 
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete </button>
+                    <a href="/edit_product/{{ i.id }}"><button class="edit">edit</button></a><br>
+                    <a href="/delete_product/{{ i.id }}"><button class="delete">delete</button></a><br>
+                    <a href="/viewoffer_product/{{ i.id }}"><button class="viewoffers">viewoffers</button></a>
+                     
+
             </td>
             </tr>
-            <!-- More staff entries can be added here -->
+            {% endfor %}
+
+
+              <div class="button-container">
+    </div>
         </tbody>
     </table>
 
     <div class="button-container">
         <a href="/add_product"><button class="add-btn">Add product</button></a>
+
+
 
     </div>
 

@@ -62,21 +62,31 @@
 <body>
 
     <div class="input-container">
-        <h3>Add Product Details</h3>
+        <h3>Add Product Details</h3> 
+        <form action="#" method="post" enctype="multipart/form-data"> 
+            {% csrf_token %}
+
         <label>Image</label>
-        <input type="file"id="addProductImage" placeholder="Product Image">
+        <input type="file"id="addProductImage" placeholder="Product Image" name="Image">
         <label>Name</label>
-        <input type="text" id="addProductName" placeholder="Product Name" />
-        <input type="text" id="addtBrandName" placeholder="Brand Name" />
-        <input type="number" id="addPrice" placeholder="Price" step="0.01" />
-        <input type="date" id="addManufacturingDate" placeholder="Manufacturing Date" />
-        <input type="date" id="addExpiryDate" placeholder="Expiry Date" />
+        <input type="text" id="addProductName" placeholder="Product Name" name="Name"/>
+        <label>Brandname</label>
+        <input type="text" id="addtBrandName" placeholder="Brand Name" name="BrandName" />
+        <label>Price</label>
+        <input type="number" id="addPrice" placeholder="Price" name="Price" step="0.01" />
+        <label>Manufacturingdate</label>
+        <input type="date" id="addManufacturingDate" placeholder="Manufacturing Date" name="ManufacturingDate"/>
+        <label>Expirydate</label>
+        <input type="date" id="addExpiryDate" placeholder="Expiry Date" name="ExpiryDate" />
+        
+
         
     </div>
 
     <div class="button-container">
-        <button class="add-btn" onclick="addProduct()">Submit</button>
+        <button class="add-btn" onclick="addProduct()" type="submit">Submit</button>
     </div>
+</form>
 
 
 </body>

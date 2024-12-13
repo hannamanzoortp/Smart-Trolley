@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,52 +62,33 @@
 </head>
 <body>
 
-    <div class="product">
-        <h2>Product Name: <span id="productName">Organic Honey</span></h2>
-        <p><strong>Brand:</strong> <span id="brandName">Nature's Best</span></p>
-        <p><strong>Price:</strong> $<span id="price">12.99</span></p>
-        <p><strong>Manufacturing Date:</strong> <span id="manufacturingDate">2023-01-15</span></p>
-        <p><strong>Expiry Date:</strong> <span id="expiryDate">2025-01-15</span></p>
-        <p class="offer"><strong>Offers:</strong> Buy 1 Get 1 50% Off</p>
-    </div>
-
     <div class="input-container">
-        <h3>Edit Product Details</h3>
-        <input type="text" id="editProductName" placeholder="Product Name" />
-        <input type="text" id="editBrandName" placeholder="Brand Name" />
-        <input type="number" id="editPrice" placeholder="Price" step="0.01" />
-        <input type="date" id="editManufacturingDate" placeholder="Manufacturing Date" />
-        <input type="date" id="editExpiryDate" placeholder="Expiry Date" />
+        <h3>Add Product Details</h3> 
+        <form action="#" method="post" enctype="multipart/form-data"> 
+            {% csrf_token %}
+
+        <label>Image</label>
+        <input type="file"id="addProductImage" placeholder="Product Image" name="Image">
+        <label>Name</label>
+        <input type="text" id="addProductName" placeholder="Product Name" name="Name" value="{{ val.Name }}" />
+        <label>Brandname</label>
+        <input type="text" id="addtBrandName" placeholder="Brand Name" name="BrandName" value="{{ val.BrandName }}" />
+        <label>Price</label>
+        <input type="text" id="addPrice" placeholder="Price" name="Price" value="{{ val.Price }} "/>
+        <label>Manufacturingdate</label>
+        <input type="date" id="addManufacturingDate" placeholder="Manufacturing Date" name="ManufacturingDate" value="{{ val.ManufacturingDate }}" />
+        <label>Expirydate</label>
+        <input type="date" id="addExpiryDate" placeholder="Expiry Date" name="ExpiryDate" value="{{ val.ExpiryDate}}"  />
+        
+
+        
     </div>
 
     <div class="button-container">
-        <button class="edit-btn" onclick="editProduct()">Edit</button>
-        <button class="delete-btn" onclick="deleteProduct()">Delete</button>
-        <button class="add-btn" onclick="addProduct()">Add</button>
+        <button class="add-btn" onclick="addProduct()" type="submit">Submit</button>
     </div>
+</form>
 
-    <script>
-        function editProduct() {
-            document.getElementById('productName').innerText = document.getElementById('editProductName').value;
-            document.getElementById('brandName').innerText = document.getElementById('editBrandName').value;
-            document.getElementById('price').innerText = document.getElementById('editPrice').value;
-            document.getElementById('manufacturingDate').innerText = document.getElementById('editManufacturingDate').value;
-            document.getElementById('expiryDate').innerText = document.getElementById('editExpiryDate').value;
-        }
-
-        function deleteProduct() {
-            document.getElementById('productName').innerText = "Product Deleted";
-            document.getElementById('brandName').innerText = "";
-            document.getElementById('price').innerText = "";
-            document.getElementById('manufacturingDate').innerText = "";
-            document.getElementById('expiryDate').innerText = "";
-        }
-
-        function addProduct() {
-            // Functionality for adding a product can be implemented here
-            alert("Add Product functionality is not yet implemented.");
-        }
-    </script>
 
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Offers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .card .price {
+            font-size: 1.2em;
+            color: green;
+            margin: 10px 0;
+        }
+        .card .brand, .card .dates, .card .offer {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        .card .offer {
+            font-weight: bold;
+            color: red;
+        }
+        .card .date {
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cards-container">
+        {% for offer in offers %}
+        <div class="card">
+            <img src="{{ offer.Product.Image.url }}" alt="{{ offer.Product.Name }}">
+            <h3>{{ offer.Product.Name }}</h3>
+            <p class="price">${{ offer.Product.Price }}</p>
+            <p class="brand">Brand: {{ offer.Product.BrandName }}</p>
+            <p class="dates">
+                <span class="date">Manufactured: {{ offer.Product.ManufacturingDate|date:"Y-m-d" }}</span><br>
+                <span class="date">Expiry: {{ offer.Product.ExpiryDate|date:"Y-m-d" }}</span>
+            </p>
+            <p class="offer">Offer: {{ offer.Offer }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
