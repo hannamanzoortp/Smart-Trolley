@@ -10,9 +10,10 @@ class ProductTable(models.Model):
     Image =models.FileField(blank=True, null=True)
     Name=models.CharField(max_length=30, blank=True, null=True)
     Price=models.FloatField(blank=True, null=True)
-    ManufacturingDate=models.DateTimeField(blank=True, null=True)
-    ExpiryDate=models.DateTimeField(blank=True, null=True)
+    ManufacturingDate=models.DateField(blank=True, null=True)
+    ExpiryDate=models.DateField(blank=True, null=True)
     BrandName=models.CharField(max_length=300, blank=True, null=True)
+    Offer=models.CharField(max_length=300, blank=True, null=True)
 class StaffTable(models.Model):
     Login=models.ForeignKey(LoginTable, on_delete=models.CASCADE)
     Name=models.CharField(max_length=30, blank=True, null=True)
@@ -41,7 +42,7 @@ class OffersTable(models.Model):
     StartDate=models.DateTimeField(blank=True, null=True)
     EndDate=models.DateTimeField(blank=True, null=True)
 class CartTable(models.Model):
-    Product=models.IntegerField(blank=True, null=True)
+    Product=models.ForeignKey(ProductTable, on_delete=models.CASCADE)
     User=models.ForeignKey(UserTable,on_delete=models.CASCADE)
     Quantity=models.IntegerField(blank=True, null=True) 
     Date=models.DateTimeField(blank=True, null=True)

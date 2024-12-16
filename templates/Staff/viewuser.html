@@ -55,54 +55,36 @@
 </head>
 <body>
 
-    <h1>view product</h1>
+    <h1>view user</h1>
 
     <table>
         <thead>
             <tr>
-                <th>productName</th>
-                <th>BrandName</th>
-                <th>price</th>
-                <th>expiryDate</th>
-                <th>manufacturingDate</th>
-                <th>offer</th>
-                <th>Actions</th>
+                <th>Name</th>
+                <th>PhoneNumber</th>
+                <th>Address</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for i in val %}
             
-            <tr>
-                <td>{{ i.Name }}
-                    <img src="{{ i.Image.url }}" width="50" height="30">
-                </td>
-                <td>{{ i.BrandName }}</td>
-                <td>{{ i.Price }}</td>
-                <td>{{ i.ExpiryDate }}</td>
-                <td>{{ i.ManufacturingDate }}</td>
-                <td>{{ i.Offer }}</td>
-                <td> 
-                    <a href="/edit_product/{{ i.id }}"><button class="edit">edit</button></a><br>
-                    <a href="/delete_product/{{ i.id }}"><button class="delete">delete</button></a><br>
+            <tr>  
+                <td>{{ i.User.Name }}</td>
+                <td>{{ i.User.PhoneNumber }}</td>
+                <td>{{ i.User.Address }}</td>
+                
+            <td> 
+                    <a href="/crosscheck/{{i.id}}"><button class="CrossCheck">CrossCheck</button></a><br>
                     
-                     
-
             </td>
             </tr>
             {% endfor %}
 
 
-              <div class="button-container">
-    </div>
+              
         </tbody>
     </table>
-
-    <div class="button-container">
-        <a href="/add_product"><button class="add-btn">Add product</button></a>
-
-
-
-    </div>
 
 
 </body>

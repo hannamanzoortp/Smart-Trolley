@@ -63,7 +63,7 @@
 <body>
 
     <div class="input-container">
-        <h3>Add Product Details</h3> 
+        <h3>Edit Product Details</h3> 
         <form action="#" method="post" enctype="multipart/form-data"> 
             {% csrf_token %}
 
@@ -76,9 +76,11 @@
         <label>Price</label>
         <input type="text" id="addPrice" placeholder="Price" name="Price" value="{{ val.Price }} "/>
         <label>Manufacturingdate</label>
-        <input type="date" id="addManufacturingDate" placeholder="Manufacturing Date" name="ManufacturingDate" value="{{ val.ManufacturingDate }}" />
+        <input type="date" id="addManufacturingDate" placeholder="Manufacturing Date" name="ManufacturingDate" value="{{ date }}" />
         <label>Expirydate</label>
-        <input type="date" id="addExpiryDate" placeholder="Expiry Date" name="ExpiryDate" value="{{ val.ExpiryDate}}"  />
+        <input type="date" id="addExpiryDate" placeholder="Expiry Date" name="ExpiryDate" value="{{ expdate }}"  />
+        <label>Offer</label>
+        <input type="text" id="addOffer" placeholder="Offer" name="Offer" value="{{ val.Offer}}"  />
         
 
         

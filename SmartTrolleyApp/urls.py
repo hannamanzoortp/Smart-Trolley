@@ -28,7 +28,6 @@ urlpatterns = [
     path('adminboard',AdminBoardPage.as_view(),name="adminboard"),
     path('edit_product/<int:p_id>',EditProductPage.as_view(),name="edit product"),
     path('delete_product/<int:p_id>',DeleteProductPage.as_view(),name="delete product"),
-    path('viewoffer_product/<int:p_id>',OfferPage.as_view(),name="viewoffers product"),
     path('edit_staff/<int:s_id>',EditStaffPage.as_view(),name="edit staff"),
     path('view_product',ViewProductPage.as_view(),name="view product"),
     path('registration',RegistrationPage.as_view(),name="registration"),
@@ -37,8 +36,9 @@ urlpatterns = [
 
     # ////////////////////////////////// STAFF //////////////////////////////////////////////////
 
-    path('crosscheck',CrossCheckPage.as_view(),name="crosscheck"),
-    path('loginscreen',LoginScreenPage.as_view(),name="loginscreen"),
+    path('crosscheck/<int:c_id>',CrossCheckPage.as_view(),name="crosscheck"),
+    path('viewuser',ViewUserPage.as_view(),name="viewuser"),
+    path('staffhome',StaffhomePage.as_view(),name="staffhome"),
     path('productdetails',ProductDetailsPage.as_view(),name="productdetails"),
 
 

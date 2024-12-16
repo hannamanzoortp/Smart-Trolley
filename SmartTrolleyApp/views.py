@@ -17,6 +17,8 @@ class LoginPage(View):
             login_obj=LoginTable.objects.get(Username=username,Password=password)
             if login_obj.Type=="ADMIN":
                 return HttpResponse('''<script>alert("welcome to admin home");window.location="/adminboard"</script>''')
+            elif login_obj.Type=="Staff":
+                return HttpResponse('''<script>alert("welcome to staff home");window.location="/staffhome"</script>''')
         
 class AddProductPage(View):
     def get(self,request):
@@ -29,8 +31,7 @@ class AddProductPage(View):
             return HttpResponse('''<script>alert("PRODUCT added succesfully");window.location="/view_product"</script>''')
 
     
-    
-    
+
 class ViewStaffPage(View):
     def get(self,request):
         obj = StaffTable.objects.all()
@@ -56,7 +57,7 @@ class AdminBoardPage(View):
 class EditProductPage(View):
     def get(self,request,p_id):
         obj=ProductTable.objects.get(id=p_id)
-        return render(request,"Admin/editproduct.html",{'val':obj})
+        return render(request,"Admin/editproduct.html",{'val':obj,'date': str(obj.ManufacturingDate), 'expdate': str(obj.ExpiryDate)})
     def post(self, request, p_id):
         obj= ProductTable.objects.get(id=p_id)
         form = ProductForm(request.POST, request.FILES, instance=obj)
@@ -86,10 +87,6 @@ class DeleteStaffPage(View):
         obj = StaffTable.objects.get(id=s_id)
         obj.delete()
         return HttpResponse('''<script>alert("delete staff succesfully");window.location="/view_staff"</script>''')
-class OfferPage(View):
-    def get(self,request, p_id):
-        obj = OffersTable.objects.all()
-        return render(request,"Admin/offer.html",{'val': obj})
 class ViewProductPage(View):
     def get(self,request):
         obj = ProductTable.objects.all()
@@ -98,16 +95,25 @@ class RegistrationPage(View):
     def get(self,request):
         return render(request,"Admin/registration.html")   
     
+
     
  # ////////////////////////////////// STAFF //////////////////////////////////////////////////
 
 
 class CrossCheckPage(View):
-    def get(self,request):
+    def get(self,request, c_id):
+        obj = CartTable.objects.filter(id=c_id)
         return render(request,"Staff/crosscheck.html")
-class LoginScreenPage(View):
+    
+class ViewUserPage(View):
     def get(self,request):
-        return render(request,"Staff/loginscreen.html")  
+        obj = CartTable.objects.all()
+        return render(request,"Staff/viewuser.html", {'val': obj})
+    
+class StaffhomePage(View):
+    def get(self,request):
+        return render(request,"Staff/staffhome.html")  
+    
 class ProductDetailsPage(View):
     def get(self,request):
         return render(request,"Staff/productdetails.html")  

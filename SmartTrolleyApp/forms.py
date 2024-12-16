@@ -16,8 +16,7 @@ class LoginForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model = ProductTable
-        fields = ['Image','Name','Price','ManufacturingDate','ExpiryDate','BrandName']
-        
+        fields = ['Image','Name','Price','ManufacturingDate','ExpiryDate','BrandName','Offer']        
 
         
 
